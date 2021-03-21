@@ -1595,13 +1595,21 @@ diff -ru contrib/libgo-10be92754f6dbbd51b390bfdc9250f2b4370d9cb/src/lib/gcc/libg
  #endif
  
  uintptr runtime_stacks_sys;
+@@ -609,6 +609,7 @@
+ 	getcontext(uc);
+ 	uc->uc_stack.ss_sp = sp;
+ 	uc->uc_stack.ss_size = (size_t)spsize;
++	uc->uc_mcontext.mc_len = sizeof(mcontext_t);
+ 	makecontext(uc, kickoff, 0);
+ }
+
 @@ -753,7 +773,8 @@
                  // 32-bit mode, the Go allocation space is all of
                  // memory anyhow.
  		if(sizeof(void*) == 8) {
 -			void *p = runtime_sysAlloc(stacksize, &getMemstats()->stacks_sys);
 +			//void *p = runtime_sysAlloc(stacksize, &getMemstats()->stacks_sys);
-+			void *p = alloc_secondary_stack(stacksize); // no stat!
++			void *p = alloc_secondary_stack("goapp", stacksize); // no stat!
  			if(p == nil)
  				runtime_throw("runtime: cannot allocate memory for goroutine stack");
  			*ret_stack = (byte*)p;
