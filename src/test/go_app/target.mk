@@ -3,13 +3,6 @@ SRC_GO = main.go
 
 LIBS   = base stdcxx libc libm libgo libgo_support mcontext-support
 
-#CC_OLEVEL = -O0 -fno-omit-frame-pointer
-
-OS_DIR := $(BASE_DIR)-$(KERNEL)/src
-INC_DIR += $(OS_DIR)/include
-INC_DIR += $(BASE_DIR)/src/include
-INC_DIR += $(BASE_DIR)/src/core/include
-
 # add place where compiled packages appears
 CUSTOM_GO = /usr/local/genode/tool/19.05/bin/genode-x86-gccgo -B$(BUILD_BASE_DIR)/lib/libgo
 
