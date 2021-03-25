@@ -29,13 +29,13 @@ install_config {
 	<default-route>
 		<any-service> <parent/> <any-child/> </any-service>
 	</default-route>
-	<default caps="200" />
-	<start name="timer">
-		<resource name="RAM" quantum="2M"/>
+	<default caps="100" />
+	<start name="timer" caps="100">
+		<resource name="RAM" quantum="1M"/>
 		<provides> <service name="Timer"/> </provides>
 	</start>
-	<start name="pc_uart_drv">
-		<resource name="RAM" quantum="2M" />
+	<start name="pc_uart_drv" caps="100">
+		<resource name="RAM" quantum="1M" />
 		<provides>
 			<service name="Uart"/>
 			<service name="Terminal"/>
@@ -44,17 +44,17 @@ install_config {
 			<policy label_prefix="gdb_monitor" uart="1" />
 		</config>
 	</start>
-	<start name="gdb_monitor" caps="2800">
-		<resource name="RAM" quantum="50M" />
+	<start name="gdb_monitor" caps="1500">
+		<resource name="RAM" quantum="150M" />
 		<provides> <service name="test-go" /> </provides>
 		<config verbose="yes" ld_verbose="yes">
-			<target name="test-go" caps="1800">
+			<target name="test-go" >
 				<config verbose="yes" ld_verbose="yes">
 					<vfs> <dir name="dev"> <log /> </dir> </vfs>
 					<libc stdout="/dev/log" stderr="/dev/log" />
 				</config>
 			</target>
-			<preserve name="RAM" quantum="20M" />
+			<preserve name="RAM" quantum="50M" />
 			<vfs>
 				<dir name="dev"> <log/> <terminal/> </dir>
 				<dir name="pipe"> <pipe/> </dir>
@@ -73,10 +73,8 @@ return "gdbserver_platform-$::env(KERNEL).lib.so"
 
 build_boot_image {
 core init timer
-ld.lib.so libc.lib.so vfs.lib.so libm.lib.so
-pc_uart_drv posix.lib.so stdcxx.lib.so vfs_pipe.lib.so
-posix.lib.so stdcxx.lib.so vfs_pipe.lib.so
-gdb_monitor gdbserver_platform.lib.so
+ld.lib.so libc.lib.so libm.lib.so posix.lib.so stdcxx.lib.so
 vfs.lib.so test-go
+pc_uart_drv vfs_pipe.lib.so gdb_monitor gdbserver_platform.lib.so
 }
 

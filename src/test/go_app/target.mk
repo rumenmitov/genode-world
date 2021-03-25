@@ -1,8 +1,7 @@
 TARGET = test-go
 SRC_GO = main.go
-SRC_CC = dummy.cc
 
-LIBS   = base stdcxx libc libm libgo
+LIBS   = base stdcxx libc libm libgo libgo_support mcontext-support
 
 #CC_OLEVEL = -O0 -fno-omit-frame-pointer
 
