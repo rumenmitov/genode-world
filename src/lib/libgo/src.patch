@@ -1643,3 +1643,20 @@ diff -ru contrib/libgo-10be92754f6dbbd51b390bfdc9250f2b4370d9cb/src/lib/gcc/libg
  		return 0;
  
  	// If there's not at least 16 MB left, we're probably
+diff -Naur contrib/libgo-10be92754f6dbbd51b390bfdc9250f2b4370d9cb/src/lib/gcc/libgo/go/runtime/mem_gccgo.go gcc/libgo/go/runtime/mem_gccgo.go
+--- contrib/libgo-10be92754f6dbbd51b390bfdc9250f2b4370d9cb/src/lib/gcc/libgo/go/runtime/mem_gccgo.go	2018-01-09 04:23:08.000000000 +0300
++++ gcc/libgo/go/runtime/mem_gccgo.go	2021-03-25 15:10:41.284804742 +0300
+@@ -15,10 +15,10 @@
+ //go:linkname sysAlloc runtime.sysAlloc
+ //go:linkname sysFree runtime.sysFree
+
+-//extern mmap
++//extern anon_mmap
+ func sysMmap(addr unsafe.Pointer, n uintptr, prot, flags, fd int32, off uintptr) unsafe.Pointer
+
+-//extern munmap
++//extern anon_munmap
+ func munmap(addr unsafe.Pointer, length uintptr) int32
+
+ //extern mincore
+
