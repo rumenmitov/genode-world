@@ -6,7 +6,7 @@ build {
 create_boot_directory
 
 install_config {
-	<config verbose="yes" ld_verbose="yes">
+	<config verbose="no" ld_verbose="no">
 		<parent-provides>
 			<service name="ROM"/>
 			<service name="LOG"/>
@@ -20,16 +20,29 @@ install_config {
 		<default-route>
 			<any-service> <any-child/> <parent/> </any-service>
 		</default-route>
-		<default caps="150"/>
+		<default caps="250"/>
                 <start name="timer">
-                        <resource name="RAM" quantum="2M"/>
+                        <resource name="RAM" quantum="4M"/>
                         <provides><service name="Timer"/></provides>
                 </start>
 		<start name="test-go" caps="250">
-			<resource name="RAM" quantum="12M"/>
+			<resource name="RAM" quantum="20M"/>
 			<config verbose="yes" ld_verbose="yes" >
-				<vfs> <dir name="dev"> <log/> </dir> </vfs>
-                                <libc stdout="/dev/log" stderr="/dev/log"/>
+				<vfs>
+					<dir name="dev"> <log/> </dir>
+					<rom name="ld.lib.so" label="ld.lib.so"/>
+					<rom name="libc.lib.so" label="libc.lib.so"/>
+					<rom name="vfs.lib.so" label="vfs.lib.so"/>
+					<rom name="libm.lib.so" label="libm.lib.so"/>
+					<rom name="stdcxx.lib.so" label="stdcxx.lib.so"/>
+					<rom name="binary" label="test-go"/>
+					<dir name="proc">
+						<dir name="self">
+							<rom name="exe" label="test-go"/>
+						</dir>
+					</dir>
+				</vfs>
+                <libc stdout="/dev/log" stderr="/dev/log"/>
 			</config>
 		</start>
 	</config>
@@ -40,7 +53,8 @@ build_boot_image {
 	vfs.lib.so test-go
 }
 
-append qemu_args " -m 80M -nographic -smp 1"
+append qemu_args " -m 80M -nographic -smp 2"
 
+run_genode_until forever
 run_genode_until "--- parent done ---.*\n" 20
 run_genode_until "child.*exited.*\n" 5 [output_spawn_id]

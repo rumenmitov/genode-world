@@ -15,7 +15,7 @@ build $build_components
 create_boot_directory
 
 install_config {
-<config verbose="yes" ld_verbose="yes">
+<config>
 	<parent-provides>
 		<service name="ROM" />
 		<service name="LOG" />
@@ -29,13 +29,13 @@ install_config {
 	<default-route>
 		<any-service> <parent/> <any-child/> </any-service>
 	</default-route>
-	<default caps="100" />
-	<start name="timer" caps="100">
-		<resource name="RAM" quantum="1M"/>
+	<default caps="250" />
+	<start name="timer" caps="200">
+		<resource name="RAM" quantum="2M"/>
 		<provides> <service name="Timer"/> </provides>
 	</start>
-	<start name="pc_uart_drv" caps="100">
-		<resource name="RAM" quantum="1M" />
+	<start name="pc_uart_drv" caps="200">
+		<resource name="RAM" quantum="2M" />
 		<provides>
 			<service name="Uart"/>
 			<service name="Terminal"/>
@@ -44,13 +44,19 @@ install_config {
 			<policy label_prefix="gdb_monitor" uart="1" />
 		</config>
 	</start>
-	<start name="gdb_monitor" caps="1500">
-		<resource name="RAM" quantum="150M" />
+	<start name="gdb_monitor" caps="2500">
+		<resource name="RAM" quantum="250M" />
 		<provides> <service name="test-go" /> </provides>
-		<config verbose="yes" ld_verbose="yes">
+		<config >
 			<target name="test-go" >
 				<config verbose="yes" ld_verbose="yes">
-					<vfs> <dir name="dev"> <log /> </dir> </vfs>
+					<vfs> <dir name="dev"> <log /> </dir>
+						<dir name="proc">
+							<dir name="self">
+								<rom name="exe" label="test-go"/>
+							</dir>
+						</dir>
+					</vfs>
 					<libc stdout="/dev/log" stderr="/dev/log" />
 				</config>
 			</target>
@@ -72,9 +78,8 @@ return "gdbserver_platform-$::env(KERNEL).lib.so"
 
 
 build_boot_image {
-core init timer
-ld.lib.so libc.lib.so libm.lib.so posix.lib.so stdcxx.lib.so
-vfs.lib.so test-go
-pc_uart_drv vfs_pipe.lib.so gdb_monitor gdbserver_platform.lib.so
+	core init timer ld.lib.so libc.lib.so libm.lib.so posix.lib.so stdcxx.lib.so
+	vfs.lib.so test-go
+	pc_uart_drv vfs_pipe.lib.so gdb_monitor gdbserver_platform.lib.so
 }
 
