@@ -61,28 +61,7 @@ target.mk for test app:
 TARGET = test-go
 SRC_GO = main.go
 
-LIBS   = base stdcxx libc libm libgo libgo_support mcontext-support
-
-# add place where compiled packages appears
-CUSTOM_GO = /usr/local/genode/tool/19.05/bin/genode-x86-gccgo -B$(BUILD_BASE_DIR)/lib/libgo
-
-TOOL_PATH:=$(dir $(GOC))
-
-LD_CMD = /usr/local/genode/tool/19.05/bin/genode-x86-gcc -B ${TOOL_PATH}/x86/gcc/gcc/
-
-# libraries to be add in the end of link/ld command
-# order is important; problem in correct initializers order for different so libs for Env
-LD_LIBGCC = \
-${LIB_CACHE_DIR}/base-$(KERNEL)-common/base-$(KERNEL)-common.lib.a \
-${LIB_CACHE_DIR}/startup-$(KERNEL)/startup-$(KERNEL).lib.a \
-${LIB_CACHE_DIR}/cxx/cxx.lib.a \
-${LIB_CACHE_DIR}/libc-stdlib/libc-stdlib.lib.a \
-${LIB_CACHE_DIR}/libc-gen/libc-gen.lib.a  \
-${BUILD_BASE_DIR}/lib/libgo/libgobegin.a \
-${BUILD_BASE_DIR}/lib/libgo/libgolibbegin.a \
-${BUILD_BASE_DIR}/lib/libgo/.libs/libgo.a \
-/usr/local/genode/tool/current/lib/gcc/x86_64-pc-elf/8.3.0/64/libgcc_eh.a \
-/usr/local/genode/tool/current/lib/gcc/x86_64-pc-elf/8.3.0/64/libgcc.a
+LIBS   = base stdcxx libc libm libgo libgo_support
 
 CC_CXX_WARN_STRICT =
 	
@@ -93,16 +72,14 @@ subdirectories. This path should be included during golang/gccgo compilation (no
 will be in ${BUILD_BASE_DIR}/lib/libgo/libgobegin.a ${BUILD_BASE_DIR}/lib/libgo/libgolibbegin.a and 
 ${BUILD_BASE_DIR}/lib/libgo/.libs/libgo.a
 
-
-Sequnce of libraries in target.mk is important, otherwise you can hit problem that libc heap initialization in libc.lib.so
-does not happens because some statical constructors (malloc heap init) do not called in proper order.
-
 	Debugging
 	=========
 On most systems (like seL4) you can use only debug print, and sometimes print locking (and output) is tricky.
-You can use gdb to debug your application on nova (while gdb support in genode somehow limited, I found a lot of problems
-with improper breaks/etc); I use Parallels VM or qemu on Mac. To compile code for gdb please, take a look at
-repos/world/run/go_app_dbg.run. For convenience I add my VSCode launch.json (to run debugger using VSCode as frontend):
+You can use gdb to debug your application on nova using qemu stub (-s) or internal gdbserver (while gdb 
+support in genode somehow limited, I found a lot of problems with improper breaks/etc); 
+I use Parallels VM or qemu on Mac. To compile code for gdb please, take a look at
+repos/world/run/go_app_dbg.run.
+For convenience I add my VSCode launch.json (to run debugger using VSCode as frontend):
         {
             "type": "gdb",
             "request": "attach",
@@ -145,12 +122,7 @@ Addresses like -o 0x10dfe000 you could take from log of program after first star
 	Current limitations
 	===================
   -	can run in VM with 1 CPU only:
-	in general it support checking of CPU number (by backporting patch from current genode code) and trying to run
-	everything, but it hangs somewhere in the middle due to recursive locking (error "deadlock ahead" in acquire() in mutex.cc)
-		May be this is small mistake - don't have time to find and fix (in this place due to slot_jump() gdb do not give
-		normal info related to stack). I found that problem during stack unwind in  ... runtime.startm -> runtime.newm -> 
-		runtime.newm -> runtime.mcommoninit -> runtime.callers -> runtime_callers() -> backtrace_full() ... ;
-		here it try to call strlcpy() which call _jmp_slot() and make nested Guard construction inside this function
+	2+ cpu give some pagefault in runtime.kickoff, seems that g does not have valid entry field (0)
    -	it works only on x86_64, tested on nova (not yet on sel4) kernels
 	genode do not support makecontex/setcontext/gencontext family; but it is crucial to support because of goroutine model;
 	I have to implement it by myself. It is machine-dependent; 
@@ -161,11 +133,7 @@ Addresses like -o 0x10dfe000 you could take from log of program after first star
 	See patches for libgo in repos/world/src/lib/libgo/. Anything in Golang which use them will fail.
 	Potentially new genode releases will contain something which can replace or fix these and other patched functions
   -	mmap support for ANON mapping implemented do not support re-map of already allocated memory outside of made by mmap alloc
-  -	once I compile all code with -O3 option, and it hangs. I did not check why...
   -	networking: never try, need to integrate with other ports, and see above about broken syscalls/routing/etc
-  -	I found that my unwind lib from gcc to call standard strlen wich replaced to call via PLT@ (from shared libs).
-	During exception error processing it is called from code with already taken mutex - so, deadlock, see details
-	https://lists.genode.org/pipermail/users/2020-October/007269.html
 
 Questions? tor@innopolis.ru - related to port (and Alexey Semenov aleks.semenov@innopolis.ru - related to build process).
 Origin in https://github.com/tor-m6/genode.git
