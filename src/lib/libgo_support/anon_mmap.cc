@@ -102,6 +102,12 @@ class Genode::Vm_region_map
 				_base = _env.rm().attach(_rm.dataspace());
 		}
 
+		~Vm_region_map()
+		{
+			/* ??? FIXME - need to cleanup _range */
+			_env.rm().detach(_base);
+		}
+
 		addr_t base() const { return _base; }
 		size_t size() const { return _size; }
 
