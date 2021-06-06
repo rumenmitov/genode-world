@@ -44,23 +44,30 @@ install_config {
 			<policy label_prefix="gdb_monitor" uart="1" />
 		</config>
 	</start>
-	<start name="gdb_monitor" caps="2500">
-		<resource name="RAM" quantum="250M" />
+	<start name="gdb_monitor" caps="3500">
+		<resource name="RAM" quantum="350M" />
 		<provides> <service name="test-go" /> </provides>
 		<config >
 			<target name="test-go" >
 				<config verbose="yes" ld_verbose="yes">
-					<vfs> <dir name="dev"> <log /> </dir>
-						<dir name="proc">
-							<dir name="self">
-								<rom name="exe" label="test-go"/>
-							</dir>
+				<vfs>
+					<dir name="dev"> <log/> </dir>
+					<rom name="ld.lib.so" label="ld.lib.so"/>
+					<rom name="libc.lib.so" label="libc.lib.so"/>
+					<rom name="vfs.lib.so" label="vfs.lib.so"/>
+					<rom name="libm.lib.so" label="libm.lib.so"/>
+					<rom name="stdcxx.lib.so" label="stdcxx.lib.so"/>
+					<rom name="binary" label="test-go"/>
+					<dir name="proc">
+						<dir name="self">
+							<rom name="exe" label="test-go"/>
 						</dir>
-					</vfs>
-					<libc stdout="/dev/log" stderr="/dev/log" />
+					</dir>
+				</vfs>
+				<libc stdout="/dev/log" stderr="/dev/log" />
 				</config>
 			</target>
-			<preserve name="RAM" quantum="50M" />
+			<preserve name="RAM" quantum="80M" />
 			<vfs>
 				<dir name="dev"> <log/> <terminal/> </dir>
 				<dir name="pipe"> <pipe/> </dir>

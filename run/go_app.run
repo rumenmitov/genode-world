@@ -53,7 +53,7 @@ build_boot_image {
 	vfs.lib.so test-go
 }
 
-append qemu_args " -m 80M -nographic -smp 2"
+append qemu_args " -m 80M -nographic -smp 1"
 
 run_genode_until forever
 run_genode_until "--- parent done ---.*\n" 20
