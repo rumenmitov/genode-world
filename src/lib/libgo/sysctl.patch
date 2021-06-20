@@ -1,12 +1,12 @@
-diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/syscall.go gcc/libgo/go/golang_org/x/net/route/syscall.go
---- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/syscall.go	2017-09-14 20:11:35.000000000 +0300
-+++ gcc/libgo/go/golang_org/x/net/route/syscall.go	2021-04-12 17:01:41.717891927 +0300
+diff -NaurwB contrib/libgo-3f77e6c05b8059120ffaff0d989dc9a8436d94e3/src/lib/gcc/libgo/go/golang.org/x/net/route/syscall.go gcc/libgo/go/golang.org/x/net/route/syscall.go
+--- contrib/libgo-3f77e6c05b8059120ffaff0d989dc9a8436d94e3/src/lib/gcc/libgo/go/golang.org/x/net/route/syscall.go	2021-06-06 23:28:06.755810490 +0300
++++ gcc/libgo/go/golang.org/x/net/route/syscall.go	2021-06-06 23:48:45.636213942 +0300
 @@ -2,27 +2,37 @@
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build darwin dragonfly freebsd netbsd openbsd
-+// +build darwin dragonfly freebsd netbsd openbsd inno
+-// +build dragonfly freebsd netbsd openbsd
++// +build dragonfly freebsd netbsd openbsd inno
  
  package route
  
@@ -28,7 +28,7 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  	} else {
  		p = unsafe.Pointer(&zero)
  	}
--	_, _, errno := syscall.Syscall6(syscall.SYS___SYSCTL, uintptr(p), uintptr(len(mib)), uintptr(unsafe.Pointer(old)), uintptr(unsafe.Pointer(oldlen)), uintptr(unsafe.Pointer(new)), uintptr(newlen))
+-	_, _, errno := syscall.Syscall6(syscall.SYS___SYSCTL, uintptr(p), uintptr(len(mib)), uintptr(unsafe.Pointer(old)), uintptr(unsafe.Pointer(oldlen)), uintptr(unsafe.Pointer(new)), newlen)
 -	if errno != 0 {
 -		return error(errno)
 +	Entersyscall()

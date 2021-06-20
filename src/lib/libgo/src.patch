@@ -17,8 +17,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build linux netbsd dragonfly nacl
-+// +build linux netbsd dragonfly nacl inno
+-// +build hurd linux netbsd dragonfly js,wasm
++// +build hurd linux netbsd dragonfly js,wasm inno
  
  package os
  
@@ -26,8 +26,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  	switch runtime.GOOS {
  	default:
  		return "", errors.New("Executable not implemented for " + runtime.GOOS)
--	case "linux", "android":
-+	case "linux", "android", "inno":
+-	case "hurd", "linux", "android":
++	case "hurd", "linux", "android", "inno":
  		procfn = "/proc/self/exe"
  	case "netbsd":
  		procfn = "/proc/curproc/exe"
@@ -71,43 +71,11 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd netbsd openbsd solaris inno
  
  package syscall
  
-@@ -81,12 +81,13 @@
- 	runtime_AfterForkInChild()
- 
- 	// Enable tracing if requested.
--	if sys.Ptrace {
--		err1 = raw_ptrace(_PTRACE_TRACEME, 0, nil, nil)
--		if err1 != 0 {
--			goto childerror
--		}
--	}
-+	// FIXME: no ptrace in genode
-+	//if sys.Ptrace {
-+	//	err1 = raw_ptrace(_PTRACE_TRACEME, 0, nil, nil)
-+	//	if err1 != 0 {
-+	//		goto childerror
-+	//	}
-+	//}
- 
- 	// Session ID
- 	if sys.Setsid {
-diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/runtime/go-caller.c gcc/libgo/runtime/go-caller.c
---- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/runtime/go-caller.c	2018-02-22 21:52:33.000000000 +0300
-+++ gcc/libgo/runtime/go-caller.c	2021-04-12 17:01:41.736892135 +0300
-@@ -116,7 +116,7 @@
- 	 argv[0] (http://gcc.gnu.org/PR61895).  It would be nice to
- 	 have a better check for whether this file is the real
- 	 executable.  */
--      if (stat (filename, &s) < 0 || s.st_size < 1024)
-+      if ((filename && stat (filename, &s) < 0) || s.st_size < 1024)
- 	filename = NULL;
- 
-       back_state = backtrace_create_state (filename, 1, error_callback, NULL);
 diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/runtime/go-setenv.c gcc/libgo/runtime/go-setenv.c
 --- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/runtime/go-setenv.c	2016-11-18 19:03:13.000000000 +0300
 +++ gcc/libgo/runtime/go-setenv.c	2021-04-12 17:01:41.736892135 +0300
@@ -122,9 +90,18 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
    if (kn == NULL)
      runtime_throw ("out of malloc memory");
    __builtin_memcpy (kn, ks, k.len);
-diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/runtime/proc.c gcc/libgo/runtime/proc.c
---- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/runtime/proc.c	2018-02-02 03:16:43.000000000 +0300
-+++ gcc/libgo/runtime/proc.c	2021-04-12 17:01:41.737892146 +0300
+diff -NaurwB gcc.libgobase/libgo/runtime/proc.c gcc.libgomod/libgo/runtime/proc.c
+--- gcc.libgobase/libgo/runtime/proc.c	2021-06-08 12:14:11.381349797 +0300
++++ gcc.libgomod/libgo/runtime/proc.c	2021-06-19 20:50:50.181777480 +0300
+@@ -19,6 +19,8 @@
+ #include "arch.h"
+ #include "defs.h"
+ 
++#include <alloc_secondary_stack.h>
++
+ #ifdef USING_SPLIT_STACK
+ 
+ /* FIXME: These are not declared anywhere.  */
 @@ -51,7 +51,7 @@
  #if defined(USING_SPLIT_STACK) && defined(LINKER_SUPPORTS_SPLIT_STACK)
  # define StackMin PTHREAD_STACK_MIN
@@ -134,13 +111,15 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  #endif
  
  uintptr runtime_stacks_sys;
-@@ -609,6 +609,7 @@
- 	getcontext(uc);
- 	uc->uc_stack.ss_sp = sp;
- 	uc->uc_stack.ss_size = (size_t)spsize;
-+	uc->uc_mcontext.mc_len = sizeof(mcontext_t);
- 	makecontext(uc, kickoff, 0);
- }
+@@ -64,7 +66,8 @@
+ #define __thread
+ #endif
+ 
+-__thread G *g __asm__(GOSYM_PREFIX "runtime.g");
++static __thread G *g;
++/*__thread G *g __asm__(GOSYM_PREFIX "runtime.g"); gcc 10.3 bug - this string generates wrong asm code */
+ 
+ #ifndef SETCONTEXT_CLOBBERS_TLS
  
 @@ -753,7 +754,8 @@
                  // 32-bit mode, the Go allocation space is all of
@@ -170,15 +149,61 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
      }
      gp->gcinitialsp = nil;
      gp->gcstacksize = 0;
-diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/runtime/thread.c gcc/libgo/runtime/thread.c
---- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/runtime/thread.c	2013-07-16 10:54:42.000000000 +0400
-+++ gcc/libgo/runtime/thread.c	2021-04-12 17:01:41.737892146 +0300
-@@ -148,7 +148,7 @@
- 	// Not an exact science: use size of binary plus
- 	// some room for thread stacks.
- 	used = (64<<20);
--	if(used >= rl.rlim_cur)
-+	if(used >= (uintptr)rl.rlim_cur)
- 		return 0;
+diff -NaurwB gcc.libgobase/libgo/go/internal/poll/fd_poll_runtime.go gcc.libgomod/libgo/go/internal/poll/fd_poll_runtime.go
+--- gcc.libgobase/libgo/go/internal/poll/fd_poll_runtime.go	2021-06-08 12:14:11.516350478 +0300
++++ gcc.libgomod/libgo/go/internal/poll/fd_poll_runtime.go	2021-06-08 17:08:06.225937928 +0300
+@@ -42,7 +42,7 @@
+ 			runtime_pollUnblock(ctx)
+ 			runtime_pollClose(ctx)
+ 		}
+-		return errnoErr(syscall.Errno(errno))
++		return syscall.Errno(errno)
+ 	}
+ 	pd.runtimeCtx = ctx
+ 	return nil
+diff -NaurwB gcc.libgobase/libgo/go/runtime/malloc.go gcc.libgomod/libgo/go/runtime/malloc.go
+--- gcc.libgobase/libgo/go/runtime/malloc.go	2021-06-08 12:14:11.555350675 +0300
++++ gcc.libgomod/libgo/go/runtime/malloc.go	2021-06-16 17:19:11.751114074 +0300
+@@ -257,7 +260,8 @@
+ 	// logHeapArenaBytes is log_2 of heapArenaBytes. For clarity,
+ 	// prefer using heapArenaBytes where possible (we need the
+ 	// constant to compute some other constants).
+-	logHeapArenaBytes = (6+20)*(_64bit*(1-sys.GoosWindows)*(1-sys.GoarchWasm)) + (2+20)*(_64bit*sys.GoosWindows) + (2+20)*(1-_64bit) + (2+20)*sys.GoarchWasm
++	// logHeapArenaBytes = (6+20)*(_64bit*(1-sys.GoosWindows)*(1-sys.GoarchWasm-sys.GoosInno)) + (2+20)*(_64bit*sys.GoosWindows) + (2+20)*(1-_64bit) + (2+20)*(sys.GoarchWasm+sys.GoosInno)
++	logHeapArenaBytes = 26
  
- 	// If there's not at least 16 MB left, we're probably
+ 	// heapArenaBitmapBytes is the size of each heap arena's bitmap.
+ 	heapArenaBitmapBytes = heapArenaBytes / (sys.PtrSize * 8 / 2)
+diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/syscall/exec_unix.go gcc/libgo/go/syscall/exec_unix.go
+--- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/syscall/exec_unix.go	2017-09-14 20:11:35.000000000 +0300
++++ gcc/libgo/go/syscall/exec_unix.go	2021-04-12 17:01:41.733892102 +0300
+@@ -2,7 +2,7 @@
+ // Use of this source code is governed by a BSD-style
+ // license that can be found in the LICENSE file.
+ 
+-// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris inno
+ 
+ // Fork, exec, wait, etc.
+ 
+@@ -328,7 +328,7 @@
+ 	runtime_BeforeExec()
+ 
+ 	var err1 error
+-	if runtime.GOOS == "solaris" || runtime.GOOS == "illumos" || runtime.GOOS == "aix" || runtime.GOOS == "hurd" {
++	if runtime.GOOS == "solaris" || runtime.GOOS == "illumos" || runtime.GOOS == "aix" || runtime.GOOS == "hurd" || runtime.GOOS == "inno" {
+ 		// RawSyscall should never be used on Solaris or AIX.
+ 		err1 = raw_execve(argv0p, &argvp[0], &envvp[0])
+ 	} else if runtime.GOOS == "darwin" {
+diff -NaurwB gcc.libgobase/libgo/runtime/runtime.h gcc.libgomod/libgo/runtime/runtime.h
+--- gcc.libgobase/libgo/runtime/runtime.h	2021-06-08 12:14:11.374349761 +0300
++++ gcc.libgomod/libgo/runtime/runtime.h	2021-06-19 20:51:46.959108269 +0300
+@@ -503,7 +503,7 @@
+ #define __go_getcontext(c)	getcontext(c)
+ #define __go_setcontext(c)	setcontext(c)
+ #define __go_makecontext(c, fn, sp, size) \
+-	((c)->uc_stack.ss_sp = sp, (c)->uc_stack.ss_size = size, makecontext(c, fn, 0))
++	((c)->uc_stack.ss_sp = sp, (c)->uc_stack.ss_size = size, (c)->uc_mcontext.mc_len = sizeof((c)->uc_mcontext), makecontext(c, fn, 0))
+ #endif
+ 
+ // Symbols defined by the linker.

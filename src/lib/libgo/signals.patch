@@ -5,16 +5,18 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris inno
  
  package runtime
  
-@@ -109,6 +109,7 @@
+@@ -104,6 +104,9 @@
  func getsig(i uint32) uintptr {
  	var sa _sigaction
  	if sigaction(i, nil, &sa) < 0 {
-+		return _SIG_DFL
++		if GOOS == "inno" {
++			return _SIG_DFL
++		}
  		// On GNU/Linux glibc rejects attempts to call
  		// sigaction with signal 32 (SIGCANCEL) or 33 (SIGSETXID).
  		if GOOS == "linux" && (i == 32 || i == 33) {
@@ -25,12 +27,12 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris inno
  
  package runtime
  
-@@ -69,8 +69,8 @@
+@@ -101,8 +101,8 @@
  	// _NSIG is the number of signals on this operating system.
  	// sigtable should describe what to do for all the possible signals.
  	if len(sigtable) != _NSIG {

@@ -1,6 +1,6 @@
-diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/interface_classic.go gcc/libgo/go/golang_org/x/net/route/interface_classic.go
---- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/interface_classic.go	2016-07-22 21:15:38.000000000 +0300
-+++ gcc/libgo/go/golang_org/x/net/route/interface_classic.go	2021-04-12 17:01:41.716891915 +0300
+diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang.org/x/net/route/interface_classic.go gcc/libgo/go/golang.org/x/net/route/interface_classic.go
+--- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang.org/x/net/route/interface_classic.go	2016-07-22 21:15:38.000000000 +0300
++++ gcc/libgo/go/golang.org/x/net/route/interface_classic.go	2021-04-12 17:01:41.716891915 +0300
 @@ -2,7 +2,7 @@
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
@@ -19,9 +19,9 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  	} else {
  		m.Index = int(nativeEndian.Uint16(b[12:14]))
  	}
-diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/route.go gcc/libgo/go/golang_org/x/net/route/route.go
---- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/route.go	2017-09-14 20:11:35.000000000 +0300
-+++ gcc/libgo/go/golang_org/x/net/route/route.go	2021-04-12 17:01:41.717891927 +0300
+diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang.org/x/net/route/route.go gcc/libgo/go/golang.org/x/net/route/route.go
+--- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang.org/x/net/route/route.go	2017-09-14 20:11:35.000000000 +0300
++++ gcc/libgo/go/golang.org/x/net/route/route.go	2021-04-12 17:01:41.717891927 +0300
 @@ -2,7 +2,7 @@
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.

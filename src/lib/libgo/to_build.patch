@@ -5,8 +5,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix linux dragonfly openbsd solaris
-+// +build aix linux dragonfly openbsd solaris inno
+-// +build aix hurd linux dragonfly openbsd solaris
++// +build aix hurd linux dragonfly openbsd solaris inno
 +// FIXME
  
  package tar
@@ -18,8 +18,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd js linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd js linux netbsd openbsd solaris inno
  
  package base
  
@@ -42,14 +42,14 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix dragonfly freebsd linux nacl netbsd openbsd solaris
-+// +build aix dragonfly freebsd linux nacl netbsd openbsd solaris inno
+-// +build aix dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris
++// +build aix dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris inno
  
  package x509
  
-diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/address.go gcc/libgo/go/golang_org/x/net/route/address.go
---- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/address.go	2017-09-14 20:11:35.000000000 +0300
-+++ gcc/libgo/go/golang_org/x/net/route/address.go	2021-04-12 17:01:41.715891905 +0300
+diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang.org/x/net/route/address.go gcc/libgo/go/golang.org/x/net/route/address.go
+--- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang.org/x/net/route/address.go	2017-09-14 20:11:35.000000000 +0300
++++ gcc/libgo/go/golang.org/x/net/route/address.go	2021-04-12 17:01:41.715891905 +0300
 @@ -2,7 +2,7 @@
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
@@ -59,9 +59,9 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  
  package route
  
-diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/binary.go gcc/libgo/go/golang_org/x/net/route/binary.go
---- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/binary.go	2017-09-14 20:11:35.000000000 +0300
-+++ gcc/libgo/go/golang_org/x/net/route/binary.go	2021-04-12 17:01:41.715891905 +0300
+diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang.org/x/net/route/binary.go gcc/libgo/go/golang.org/x/net/route/binary.go
+--- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang.org/x/net/route/binary.go	2017-09-14 20:11:35.000000000 +0300
++++ gcc/libgo/go/golang.org/x/net/route/binary.go	2021-04-12 17:01:41.715891905 +0300
 @@ -2,7 +2,7 @@
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
@@ -71,9 +71,9 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  
  package route
  
-diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/interface.go gcc/libgo/go/golang_org/x/net/route/interface.go
---- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/interface.go	2016-07-22 21:15:38.000000000 +0300
-+++ gcc/libgo/go/golang_org/x/net/route/interface.go	2021-04-12 17:01:41.716891915 +0300
+diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang.org/x/net/route/interface.go gcc/libgo/go/golang.org/x/net/route/interface.go
+--- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang.org/x/net/route/interface.go	2016-07-22 21:15:38.000000000 +0300
++++ gcc/libgo/go/golang.org/x/net/route/interface.go	2021-04-12 17:01:41.716891915 +0300
 @@ -2,7 +2,7 @@
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
@@ -83,9 +83,9 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  
  package route
  
-diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/interface_announce.go gcc/libgo/go/golang_org/x/net/route/interface_announce.go
---- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/interface_announce.go	2016-07-22 21:15:38.000000000 +0300
-+++ gcc/libgo/go/golang_org/x/net/route/interface_announce.go	2021-04-12 17:01:41.716891915 +0300
+diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang.org/x/net/route/interface_announce.go gcc/libgo/go/golang.org/x/net/route/interface_announce.go
+--- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang.org/x/net/route/interface_announce.go	2016-07-22 21:15:38.000000000 +0300
++++ gcc/libgo/go/golang.org/x/net/route/interface_announce.go	2021-04-12 17:01:41.716891915 +0300
 @@ -2,7 +2,7 @@
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
@@ -95,9 +95,9 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  
  package route
  
-diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/message.go gcc/libgo/go/golang_org/x/net/route/message.go
---- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/message.go	2017-09-14 20:11:35.000000000 +0300
-+++ gcc/libgo/go/golang_org/x/net/route/message.go	2021-04-12 17:01:41.716891915 +0300
+diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang.org/x/net/route/message.go gcc/libgo/go/golang.org/x/net/route/message.go
+--- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang.org/x/net/route/message.go	2017-09-14 20:11:35.000000000 +0300
++++ gcc/libgo/go/golang.org/x/net/route/message.go	2021-04-12 17:01:41.716891915 +0300
 @@ -2,7 +2,7 @@
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
@@ -107,9 +107,9 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  
  package route
  
-diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/route_classic.go gcc/libgo/go/golang_org/x/net/route/route_classic.go
---- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/route_classic.go	2018-01-09 04:23:08.000000000 +0300
-+++ gcc/libgo/go/golang_org/x/net/route/route_classic.go	2021-04-12 17:01:41.717891927 +0300
+diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang.org/x/net/route/route_classic.go gcc/libgo/go/golang.org/x/net/route/route_classic.go
+--- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang.org/x/net/route/route_classic.go	2018-01-09 04:23:08.000000000 +0300
++++ gcc/libgo/go/golang.org/x/net/route/route_classic.go	2021-04-12 17:01:41.717891927 +0300
 @@ -2,7 +2,7 @@
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
@@ -119,9 +119,9 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  
  package route
  
-diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/sys.go gcc/libgo/go/golang_org/x/net/route/sys.go
---- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/sys.go	2017-09-14 20:11:35.000000000 +0300
-+++ gcc/libgo/go/golang_org/x/net/route/sys.go	2021-04-12 17:01:41.717891927 +0300
+diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang.org/x/net/route/sys.go gcc/libgo/go/golang.org/x/net/route/sys.go
+--- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang.org/x/net/route/sys.go	2017-09-14 20:11:35.000000000 +0300
++++ gcc/libgo/go/golang.org/x/net/route/sys.go	2021-04-12 17:01:41.717891927 +0300
 @@ -2,7 +2,7 @@
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
@@ -138,8 +138,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux netbsd openbsd windows solaris
-+// +build aix darwin dragonfly freebsd linux netbsd openbsd windows solaris inno
+-// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd windows solaris
++// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd windows solaris inno
  
  package poll
  
@@ -150,8 +150,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows inno
  
  package poll
  
@@ -162,8 +162,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris inno
  
  package poll
  
@@ -174,8 +174,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris inno
  
  package poll
  
@@ -186,8 +186,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris windows
-+// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris windows inno
+-// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris windows
++// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris windows inno
  
  package poll
  
@@ -198,8 +198,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build darwin dragonfly freebsd linux netbsd openbsd solaris
-+// +build darwin dragonfly freebsd linux netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris inno
  
  package poll
  
@@ -210,8 +210,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris windows
-+// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris windows inno
+-// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris windows
++// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris windows inno
  
  package poll
  
@@ -222,8 +222,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // This file implements sysSocket and accept for platforms that do not
  // provide a fast path for setting SetNonblock and CloseOnExec.
  
--// +build aix darwin nacl netbsd openbsd solaris
-+// +build aix darwin nacl netbsd openbsd solaris inno
+-// +build aix darwin js,wasm solaris
++// +build aix darwin js,wasm solaris inno
  
  package poll
  
@@ -234,8 +234,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris inno
  
  // Minimal RFC 6724 address selection.
  
@@ -246,8 +246,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // license that can be found in the LICENSE file.
  
  // +build cgo,!netgo
--// +build aix darwin linux,!android netbsd solaris
-+// +build aix darwin linux,!android netbsd solaris inno
+-// +build aix darwin hurd linux,!android netbsd solaris
++// +build aix darwin hurd linux,!android netbsd solaris inno
  
  package net
  
@@ -258,8 +258,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // license that can be found in the LICENSE file.
  
  // +build cgo,!netgo
--// +build aix darwin dragonfly freebsd netbsd openbsd
-+// +build aix darwin dragonfly freebsd netbsd openbsd inno
+-// +build aix darwin dragonfly freebsd hurd netbsd openbsd
++// +build aix darwin dragonfly freebsd hurd netbsd openbsd inno
  
  package net
  
@@ -270,8 +270,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // license that can be found in the LICENSE file.
  
  // +build cgo,!netgo
--// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris inno
  
  package net
  
@@ -282,8 +282,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris inno
  
  package net
  
@@ -294,8 +294,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris inno
  
  // DNS client: see RFC 1035.
  // Has to be linked into package net for Dial.
@@ -306,8 +306,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris inno
  
  // Read system DNS config from /etc/resolv.conf
  
@@ -318,8 +318,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows inno
  
  package net
  
@@ -330,8 +330,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris inno
  
  package net
  
@@ -342,8 +342,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris inno
  
  package net
  
@@ -354,8 +354,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris inno
  
  package net
  
@@ -366,8 +366,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix nacl
-+// +build aix nacl inno
+-// +build hurd js,wasm
++// +build hurd js,wasm inno
 +//FIXME
  
  package net
@@ -379,8 +379,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows inno
  
  package net
  
@@ -391,8 +391,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows inno
  
  package net
  
@@ -403,8 +403,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris inno
  
  package net
  
@@ -415,8 +415,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris inno
  
  package net
  
@@ -427,8 +427,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris nacl
-+// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris nacl inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris inno
  
  // Read system port mappings from /etc/services
  
@@ -439,8 +439,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin nacl netbsd openbsd
-+// +build aix darwin nacl netbsd openbsd inno
+-// +build aix darwin js,wasm netbsd openbsd
++// +build aix darwin js,wasm netbsd openbsd inno
  
  package net
  
@@ -451,8 +451,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows inno
+-// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris windows
++// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris windows inno
  
  package net
  
@@ -463,8 +463,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix nacl solaris
-+// +build aix nacl solaris inno
+-// +build aix hurd js,wasm solaris
++// +build aix hurd js,wasm solaris inno
 +// FIXME
  
  package net
@@ -488,8 +488,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris windows
-+// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris windows inno
+-// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris windows
++// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris windows inno
  
  package net
  
@@ -500,8 +500,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build darwin dragonfly freebsd netbsd openbsd solaris
-+// +build darwin dragonfly freebsd netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd netbsd openbsd solaris inno
  
  package net
  
@@ -512,8 +512,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris windows
-+// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris windows inno
+-// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris windows
++// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris windows inno
  
  package net
  
@@ -524,8 +524,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // This file implements sysSocket and accept for platforms that do not
  // provide a fast path for setting SetNonblock and CloseOnExec.
  
--// +build aix darwin nacl netbsd openbsd solaris
-+// +build aix darwin nacl netbsd openbsd solaris inno
+-// +build aix darwin solaris
++// +build aix darwin solaris inno
  
  package net
  
@@ -536,8 +536,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows inno
  
  package net
  
@@ -548,8 +548,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris windows
-+// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris windows inno
+-// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris windows
++// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris windows inno
  
  package net
  
@@ -560,8 +560,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix freebsd linux netbsd
-+// +build aix freebsd linux netbsd inno
+-// +build aix freebsd hurd linux netbsd
++// +build aix freebsd hurd linux netbsd inno
  
  package net
  
@@ -572,8 +572,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows inno
  
  package net
  
@@ -584,8 +584,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows inno
  
  package net
  
@@ -601,18 +601,6 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  
  package net
  
-diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/os/dir_unix.go gcc/libgo/go/os/dir_unix.go
---- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/os/dir_unix.go	2017-05-10 20:26:09.000000000 +0300
-+++ gcc/libgo/go/os/dir_unix.go	2021-04-12 17:01:41.726892025 +0300
-@@ -2,7 +2,7 @@
- // Use of this source code is governed by a BSD-style
- // license that can be found in the LICENSE file.
- 
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris inno
- 
- package os
- 
 diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/os/error_posix.go gcc/libgo/go/os/error_posix.go
 --- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/os/error_posix.go	2017-09-14 20:11:35.000000000 +0300
 +++ gcc/libgo/go/os/error_posix.go	2021-04-12 17:01:41.726892025 +0300
@@ -620,20 +608,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows
-+// +build darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows inno
- 
- package os
- 
-diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/os/error_unix.go gcc/libgo/go/os/error_unix.go
---- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/os/error_unix.go	2017-05-10 20:26:09.000000000 +0300
-+++ gcc/libgo/go/os/error_unix.go	2021-04-12 17:01:41.727892036 +0300
-@@ -2,7 +2,7 @@
- // Use of this source code is governed by a BSD-style
- // license that can be found in the LICENSE file.
- 
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows inno
  
  package os
  
@@ -644,8 +620,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris inno
  
  package exec
  
@@ -656,8 +632,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows inno
  
  package os
  
@@ -668,8 +644,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris inno
  
  package os
  
@@ -680,8 +656,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows inno
  
  package os
  
@@ -692,8 +668,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris inno
  
  package os
  
@@ -704,8 +680,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris inno
  
  package os
  
@@ -716,8 +692,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly nacl netbsd openbsd solaris
-+// +build aix darwin dragonfly nacl netbsd openbsd solaris inno
+-// +build aix darwin dragonfly js,wasm solaris
++// +build aix darwin dragonfly js,wasm solaris inno
  
  package os
  
@@ -728,11 +704,11 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux,!android netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux,!android netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd linux,!android netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd linux,!android netbsd openbsd solaris inno
+ // +build cgo
  
  // Package pty is a simple pseudo-terminal package for Unix systems,
- // implemented by calling C functions via cgo.
 diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/os/signal/signal_unix.go gcc/libgo/go/os/signal/signal_unix.go
 --- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/os/signal/signal_unix.go	2017-05-10 20:26:09.000000000 +0300
 +++ gcc/libgo/go/os/signal/signal_unix.go	2021-04-12 17:01:41.729892058 +0300
@@ -740,8 +716,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows inno
  
  package signal
  
@@ -752,8 +728,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build linux openbsd solaristag
-+// +build linux openbsd solaristag inno
+-// +build hurd linux openbsd solaristag
++// +build hurd linux openbsd solaristag inno
 +// FIXME!
  
  package os
@@ -765,8 +741,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris inno
  
  package os
  
@@ -777,8 +753,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build darwin dragonfly freebsd netbsd openbsd solaris
-+// +build darwin dragonfly freebsd netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd js,wasm netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd js,wasm netbsd openbsd solaris inno
  
  package os
  
@@ -786,13 +762,13 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
 --- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/os/sticky_notbsd.go	2015-10-31 03:59:47.000000000 +0300
 +++ gcc/libgo/go/os/sticky_notbsd.go	2021-04-12 17:01:41.729892058 +0300
 @@ -6,6 +6,7 @@
+ // +build !darwin
  // +build !dragonfly
  // +build !freebsd
- // +build !netbsd
 +// +build !inno
+ // +build !js !wasm
+ // +build !netbsd
  // +build !openbsd
- // +build !solaris
- 
 diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/os/sys_uname.go gcc/libgo/go/os/sys_uname.go
 --- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/os/sys_uname.go	2017-05-10 20:26:09.000000000 +0300
 +++ gcc/libgo/go/os/sys_uname.go	2021-04-12 17:01:41.730892069 +0300
@@ -800,8 +776,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  
  // For systems which only store the hostname in uname (Solaris).
  
--// +build aix solaris irix rtems
-+// +build aix solaris irix rtems inno
+-// +build aix hurd solaris irix rtems
++// +build aix hurd solaris irix rtems inno
 +// FIXME
  
  package os
@@ -813,8 +789,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix dragonfly linux netbsd openbsd solaris
-+// +build aix dragonfly linux netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris inno
  
  package os
  
@@ -825,9 +801,9 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd !android,linux netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd !android,linux netbsd openbsd solaris inno
- // +build cgo
+-// +build aix darwin dragonfly freebsd hurd !android,linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd !android,linux netbsd openbsd solaris inno
+ // +build cgo,!osusergo
  
  package user
 diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/os/user/decls_unix.go gcc/libgo/go/os/user/decls_unix.go
@@ -837,8 +813,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build darwin dragonfly freebsd linux netbsd openbsd
-+// +build darwin dragonfly freebsd linux netbsd openbsd inno
+-// +build darwin dragonfly freebsd hurd linux netbsd openbsd
++// +build darwin dragonfly freebsd hurd linux netbsd openbsd inno
  // +build cgo
  
  package user
@@ -849,11 +825,11 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build dragonfly darwin freebsd !android,linux netbsd openbsd
-+// +build dragonfly darwin freebsd !android,linux netbsd openbsd inno
+-// +build dragonfly darwin freebsd hurd !android,linux netbsd openbsd
++// +build dragonfly darwin freebsd hurd !android,linux netbsd openbsd inno
+ // +build cgo,!osusergo
  
  package user
- 
 diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/os/user/lookup_unix.go gcc/libgo/go/os/user/lookup_unix.go
 --- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/os/user/lookup_unix.go	2017-09-14 20:11:35.000000000 +0300
 +++ gcc/libgo/go/os/user/lookup_unix.go	2021-04-12 17:01:41.731892080 +0300
@@ -861,9 +837,9 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build darwin dragonfly freebsd !android,linux nacl netbsd openbsd solaris
-+// +build darwin dragonfly freebsd !android,linux nacl netbsd openbsd solaris inno
- // +build !cgo
+-// +build aix darwin dragonfly freebsd hurd js,wasm !android,linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd js,wasm !android,linux netbsd openbsd solaris inno
+ // +build !cgo osusergo
  
  package user
 diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/os/wait_unimp.go gcc/libgo/go/os/wait_unimp.go
@@ -873,8 +849,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly nacl netbsd openbsd solaris
-+// +build aix darwin dragonfly nacl netbsd openbsd solaris inno
+-// +build aix darwin dragonfly hurd js,wasm netbsd openbsd solaris
++// +build aix darwin dragonfly hurd js,wasm netbsd openbsd solaris inno
  
  package os
  
@@ -885,8 +861,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris inno
  
  package filepath
  
@@ -897,8 +873,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows inno
  
  package runtime
  
@@ -909,8 +885,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin nacl netbsd openbsd plan9 solaris windows
-+// +build aix darwin nacl netbsd openbsd plan9 solaris windows inno
+-// +build aix darwin hurd netbsd openbsd plan9 solaris windows
++// +build aix darwin hurd netbsd openbsd plan9 solaris windows inno
  
  package runtime
  
@@ -921,20 +897,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris windows inno
- 
- package runtime
- 
-diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/runtime/signal_sighandler.go gcc/libgo/go/runtime/signal_sighandler.go
---- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/runtime/signal_sighandler.go	2018-01-28 02:44:29.000000000 +0300
-+++ gcc/libgo/go/runtime/signal_sighandler.go	2021-04-12 17:01:41.732892091 +0300
-@@ -2,7 +2,7 @@
- // Use of this source code is governed by a BSD-style
- // license that can be found in the LICENSE file.
- 
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows inno
  
  package runtime
  
@@ -945,8 +909,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris inno
  
  package syscall
  
@@ -957,34 +921,10 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris inno
  
  // Unix environment variables.
- 
-diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/syscall/exec_unix.go gcc/libgo/go/syscall/exec_unix.go
---- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/syscall/exec_unix.go	2017-09-14 20:11:35.000000000 +0300
-+++ gcc/libgo/go/syscall/exec_unix.go	2021-04-12 17:01:41.733892102 +0300
-@@ -2,7 +2,7 @@
- // Use of this source code is governed by a BSD-style
- // license that can be found in the LICENSE file.
- 
--// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris inno
- 
- // Fork, exec, wait, etc.
- 
-diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/syscall/forkpipe_bsd.go gcc/libgo/go/syscall/forkpipe_bsd.go
---- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/syscall/forkpipe_bsd.go	2017-09-20 17:59:39.000000000 +0300
-+++ gcc/libgo/go/syscall/forkpipe_bsd.go	2021-04-12 17:01:41.734892113 +0300
-@@ -2,7 +2,7 @@
- // Use of this source code is governed by a BSD-style
- // license that can be found in the LICENSE file.
- 
--// +build aix darwin dragonfly netbsd openbsd solaris
-+// +build aix darwin dragonfly netbsd openbsd solaris inno
- 
- package syscall
  
 diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/syscall/libcall_bsd.go gcc/libgo/go/syscall/libcall_bsd.go
 --- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/syscall/libcall_bsd.go	2016-08-06 03:36:33.000000000 +0300
@@ -1005,8 +945,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd openbsd netbsd solaris
-+// +build aix darwin dragonfly freebsd openbsd netbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd openbsd netbsd solaris
++// +build aix darwin dragonfly freebsd hurd openbsd netbsd solaris inno
  
  // General POSIX version of UtimesNano.
  
@@ -1017,8 +957,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris inno
  
  // Socket control messages
  
@@ -1029,8 +969,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build darwin dragonfly freebsd openbsd netbsd
-+// +build darwin dragonfly freebsd openbsd netbsd inno
+-// +build darwin dragonfly freebsd hurd openbsd netbsd
++// +build darwin dragonfly freebsd hurd openbsd netbsd inno
  
  package syscall
  
@@ -1041,8 +981,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris inno
  
  package syscall
  
@@ -1053,8 +993,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux nacl netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris inno
  
  package time
  
@@ -1065,8 +1005,8 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin,386 darwin,amd64 dragonfly freebsd linux,!android nacl netbsd openbsd solaris
-+// +build aix darwin,386 darwin,amd64 dragonfly freebsd linux,!android nacl netbsd openbsd solaris inno
+-// +build aix darwin,386 darwin,amd64 dragonfly freebsd hurd linux,!android netbsd openbsd solaris
++// +build aix darwin,386 darwin,amd64 dragonfly freebsd hurd linux,!android netbsd openbsd solaris inno
  
  // Parse "zoneinfo" time zone file.
  // This is a fairly standard file format used on OS X, Linux, BSD, Sun, and others.
@@ -1077,8 +1017,139 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
  // Use of this source code is governed by a BSD-style
  // license that can be found in the LICENSE file.
  
--// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris
-+// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris inno
+-// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd linux netbsd openbsd solaris inno
  
  package syscall
+ 
+diff -NaurwB gcc.libgobase/libgo/go/cmd/go/internal/modload/stat_unix.go gcc.libgomod/libgo/go/cmd/go/internal/modload/stat_unix.go
+--- gcc.libgobase/libgo/go/cmd/go/internal/modload/stat_unix.go	2021-06-08 12:14:12.523355559 +0300
++++ gcc.libgomod/libgo/go/cmd/go/internal/modload/stat_unix.go	2021-06-08 21:34:35.005803241 +0300
+@@ -2,7 +2,7 @@
+ // Use of this source code is governed by a BSD-style
+ // license that can be found in the LICENSE file.
+ 
+-// +build darwin dragonfly freebsd hurd linux netbsd openbsd solaris
++// +build darwin dragonfly freebsd hurd linux netbsd openbsd solaris inno
+ 
+ package modload
+ 
+diff -NaurwB gcc.libgobase/libgo/go/internal/poll/fcntl_libc.go gcc.libgomod/libgo/go/internal/poll/fcntl_libc.go
+--- gcc.libgobase/libgo/go/internal/poll/fcntl_libc.go	2021-06-08 12:14:11.512350458 +0300
++++ gcc.libgomod/libgo/go/internal/poll/fcntl_libc.go	2021-06-08 17:02:45.021189934 +0300
+@@ -2,7 +2,7 @@
+ // Use of this source code is governed by a BSD-style
+ // license that can be found in the LICENSE file.
+ 
+-// +build aix darwin solaris
++// +build aix darwin solaris inno
+ 
+ package poll
+ 
+diff -NaurwB gcc.libgobase/libgo/go/internal/poll/fd_fsync_posix.go gcc.libgomod/libgo/go/internal/poll/fd_fsync_posix.go
+--- gcc.libgobase/libgo/go/internal/poll/fd_fsync_posix.go	2021-06-08 12:14:11.508350438 +0300
++++ gcc.libgomod/libgo/go/internal/poll/fd_fsync_posix.go	2021-06-08 20:34:53.558971390 +0300
+@@ -2,7 +2,7 @@
+ // Use of this source code is governed by a BSD-style
+ // license that can be found in the LICENSE file.
+ 
+-// +build aix dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris
++// +build aix dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris inno
+ 
+ package poll
+ 
+diff -NaurwB gcc.libgobase/libgo/go/internal/syscall/unix/nonblocking_libc.go gcc.libgomod/libgo/go/internal/syscall/unix/nonblocking_libc.go
+--- gcc.libgobase/libgo/go/internal/syscall/unix/nonblocking_libc.go	2021-06-08 12:14:11.479350291 +0300
++++ gcc.libgomod/libgo/go/internal/syscall/unix/nonblocking_libc.go	2021-06-08 20:29:50.174254121 +0300
+@@ -2,7 +2,7 @@
+ // Use of this source code is governed by a BSD-style
+ // license that can be found in the LICENSE file.
+ 
+-// +build aix darwin solaris
++// +build aix darwin solaris inno
+ 
+ package unix
+ 
+diff -NaurwB gcc.libgobase/libgo/go/net/error_unix.go gcc.libgomod/libgo/go/net/error_unix.go
+--- gcc.libgobase/libgo/go/net/error_unix.go	2021-06-08 12:14:12.028353061 +0300
++++ gcc.libgomod/libgo/go/net/error_unix.go	2021-06-08 21:31:13.625691924 +0300
+@@ -2,7 +2,7 @@
+ // Use of this source code is governed by a BSD-style
+ // license that can be found in the LICENSE file.
+ 
+-// +build aix darwin dragonfly freebsd hurd js linux netbsd openbsd solaris
++// +build aix darwin dragonfly freebsd hurd js linux netbsd openbsd solaris inno
+ 
+ package net
+ 
+diff -NaurwB gcc.libgobase/libgo/go/net/sockaddr_posix.go gcc.libgomod/libgo/go/net/sockaddr_posix.go
+--- gcc.libgobase/libgo/go/net/sockaddr_posix.go	2021-06-08 12:14:12.082353334 +0300
++++ gcc.libgomod/libgo/go/net/sockaddr_posix.go	2021-06-08 21:28:27.564774984 +0300
+@@ -2,7 +2,7 @@
+ // Use of this source code is governed by a BSD-style
+ // license that can be found in the LICENSE file.
+ 
+-// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows
++// +build aix darwin dragonfly freebsd hurd js,wasm linux netbsd openbsd solaris windows inno
+ 
+ package net
+ 
+diff -NaurwB gcc.libgobase/libgo/go/runtime/auxv_none.go gcc.libgomod/libgo/go/runtime/auxv_none.go
+--- gcc.libgobase/libgo/go/runtime/auxv_none.go	2021-06-08 12:14:11.541350604 +0300
++++ gcc.libgomod/libgo/go/runtime/auxv_none.go	2021-06-08 12:20:05.392153250 +0300
+@@ -9,6 +9,7 @@
+ // +build !netbsd
+ // +build !openbsd !arm64
+ // +build !solaris
++// +build !inno
+ 
+ package runtime
+ 
+diff -NaurwB gcc.libgobase/libgo/go/runtime/netpoll_fake.go gcc.libgomod/libgo/go/runtime/netpoll_fake.go
+--- gcc.libgobase/libgo/go/runtime/netpoll_fake.go	2021-06-08 12:14:11.557350685 +0300
++++ gcc.libgomod/libgo/go/runtime/netpoll_fake.go	2021-06-08 14:15:08.788269695 +0300
+@@ -5,7 +5,7 @@
+ // Fake network poller for wasm/js.
+ // Should never be used, because wasm/js network connections do not honor "SetNonblock".
+ 
+-// +build js,wasm
++// +build js,wasm inno
+ 
+ package runtime
+ 
+diff -NaurwB gcc.libgobase/libgo/go/syscall/forkpipe.go gcc.libgomod/libgo/go/syscall/forkpipe.go
+--- gcc.libgobase/libgo/go/syscall/forkpipe.go	2021-06-08 12:14:11.465350221 +0300
++++ gcc.libgomod/libgo/go/syscall/forkpipe.go	2021-06-08 16:38:39.419274126 +0300
+@@ -2,7 +2,7 @@
+ // Use of this source code is governed by a BSD-style
+ // license that can be found in the LICENSE file.
+ 
+-// +build aix darwin dragonfly solaris
++// +build aix darwin dragonfly solaris inno
+ 
+ package syscall
+ 
+diff -NaurwB gcc.libgobase/libgo/go/syscall/sockcmsg_unix_other.go gcc.libgomod/libgo/go/syscall/sockcmsg_unix_other.go
+--- gcc.libgobase/libgo/go/syscall/sockcmsg_unix_other.go	2021-06-08 12:14:11.457350180 +0300
++++ gcc.libgomod/libgo/go/syscall/sockcmsg_unix_other.go	2021-06-08 16:40:47.462978707 +0300
+@@ -2,7 +2,7 @@
+ // Use of this source code is governed by a BSD-style
+ // license that can be found in the LICENSE file.
+ 
+-// +build aix darwin freebsd hurd linux netbsd openbsd solaris
++// +build aix darwin freebsd hurd linux netbsd openbsd solaris inno
+ 
+ package syscall
+ 
+diff -NaurwB gcc.libgobase/libgo/go/syscall/syscall_funcs_stubs.go gcc.libgomod/libgo/go/syscall/syscall_funcs_stubs.go
+--- gcc.libgobase/libgo/go/syscall/syscall_funcs_stubs.go	2021-06-08 12:14:11.464350216 +0300
++++ gcc.libgomod/libgo/go/syscall/syscall_funcs_stubs.go	2021-06-08 16:20:00.343100052 +0300
+@@ -2,7 +2,7 @@
+ // Use of this source code is governed by a BSD-style
+ // license that can be found in the LICENSE file.
+ 
+-// +build aix rtems
++// +build aix rtems inno
+ 
+ // These are stubs.
  

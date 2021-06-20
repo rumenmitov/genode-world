@@ -1,6 +1,6 @@
-diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/defs_inno.go gcc/libgo/go/golang_org/x/net/route/defs_inno.go
---- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/defs_inno.go	1970-01-01 03:00:00.000000000 +0300
-+++ gcc/libgo/go/golang_org/x/net/route/defs_inno.go	2021-04-12 17:01:41.684891564 +0300
+diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang.org/x/net/route/defs_inno.go gcc/libgo/go/golang.org/x/net/route/defs_inno.go
+--- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang.org/x/net/route/defs_inno.go	1970-01-01 03:00:00.000000000 +0300
++++ gcc/libgo/go/golang.org/x/net/route/defs_inno.go	2021-04-12 17:01:41.684891564 +0300
 @@ -0,0 +1,112 @@
 +// Copyright 2016 The Go Authors. All rights reserved.
 +// Use of this source code is governed by a BSD-style
@@ -114,9 +114,9 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
 +	sizeofSockaddrInet    = C.sizeof_struct_sockaddr_in
 +	sizeofSockaddrInet6   = C.sizeof_struct_sockaddr_in6
 +)
-diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/sys_inno.go gcc/libgo/go/golang_org/x/net/route/sys_inno.go
---- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/sys_inno.go	1970-01-01 03:00:00.000000000 +0300
-+++ gcc/libgo/go/golang_org/x/net/route/sys_inno.go	2021-04-12 17:01:41.685891576 +0300
+diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang.org/x/net/route/sys_inno.go gcc/libgo/go/golang.org/x/net/route/sys_inno.go
+--- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang.org/x/net/route/sys_inno.go	1970-01-01 03:00:00.000000000 +0300
++++ gcc/libgo/go/golang.org/x/net/route/sys_inno.go	2021-04-12 17:01:41.685891576 +0300
 @@ -0,0 +1,71 @@
 +// Copyright 2016 The Go Authors. All rights reserved.
 +// Use of this source code is governed by a BSD-style
@@ -189,9 +189,9 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
 +		sysRTM_IFINFO:     ifm,
 +	}
 +}
-diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/zsys_inno.go gcc/libgo/go/golang_org/x/net/route/zsys_inno.go
---- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang_org/x/net/route/zsys_inno.go	1970-01-01 03:00:00.000000000 +0300
-+++ gcc/libgo/go/golang_org/x/net/route/zsys_inno.go	2021-04-12 17:01:41.685891576 +0300
+diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang.org/x/net/route/zsys_inno.go gcc/libgo/go/golang.org/x/net/route/zsys_inno.go
+--- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/golang.org/x/net/route/zsys_inno.go	1970-01-01 03:00:00.000000000 +0300
++++ gcc/libgo/go/golang.org/x/net/route/zsys_inno.go	2021-04-12 17:01:41.685891576 +0300
 @@ -0,0 +1,97 @@
 +// Created by cgo -godefs - DO NOT EDIT
 +// cgo -godefs defs_inno.go
@@ -410,14 +410,17 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
 diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/runtime/os_inno.go gcc/libgo/go/runtime/os_inno.go
 --- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/runtime/os_inno.go	1970-01-01 03:00:00.000000000 +0300
 +++ gcc/libgo/go/runtime/os_inno.go	2021-04-12 17:01:41.685891576 +0300
-@@ -0,0 +1,98 @@
+@@ -0,0 +1,171 @@
 +// Copyright 2017 The Go Authors. All rights reserved.
 +// Use of this source code is governed by a BSD-style
 +// license that can be found in the LICENSE file.
 +
 +package runtime
 +
-+import "unsafe"
++import (
++       "runtime/internal/sys"
++       "unsafe"
++)
 +
 +type mOS struct {
 +	waitsema uintptr // semaphore for parking on locks
@@ -448,7 +451,7 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
 +
 +//go:nosplit
 +func semacreate(mp *m) {
-+	if mp.mos.waitsema != 0 {
++	if mp.mOS.waitsema != 0 {
 +		return
 +	}
 +
@@ -461,7 +464,7 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
 +	if sem_init(sem, 0, 0) != 0 {
 +		throw("sem_init")
 +	}
-+	mp.mos.waitsema = uintptr(unsafe.Pointer(sem))
++	mp.mOS.waitsema = uintptr(unsafe.Pointer(sem))
 +}
 +
 +//go:nosplit
@@ -481,7 +484,7 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
 +			ts.tv_nsec -= timespec_nsec_t(1000000000)
 +		}
 +
-+		if sem_timedwait((*semt)(unsafe.Pointer(_m_.mos.waitsema)), &ts) != 0 {
++		if sem_timedwait((*semt)(unsafe.Pointer(_m_.mOS.waitsema)), &ts) != 0 {
 +			err := errno()
 +			if err == _ETIMEDOUT || err == _EAGAIN || err == _EINTR {
 +				return -1
@@ -491,7 +494,7 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
 +		return 0
 +	}
 +	for {
-+		r1 := sem_wait((*semt)(unsafe.Pointer(_m_.mos.waitsema)))
++		r1 := sem_wait((*semt)(unsafe.Pointer(_m_.mOS.waitsema)))
 +		if r1 == 0 {
 +			break
 +		}
@@ -505,14 +508,84 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
 +
 +//go:nosplit
 +func semawakeup(mp *m) {
-+	if sem_post((*semt)(unsafe.Pointer(mp.mos.waitsema))) != 0 {
++	if sem_post((*semt)(unsafe.Pointer(mp.mOS.waitsema))) != 0 {
 +		throw("sem_post")
 +	}
++}
++
++func osinit() {
++	ncpu = getncpu()
++	if physPageSize == 0 {
++		physPageSize = getPageSize()
++	}
++}
++
++func sysargs(argc int32, argv **byte) {
++	n := argc + 1
++
++	// skip over argv, envp to get to auxv
++	for argv_index(argv, n) != nil {
++		n++
++	}
++
++	// skip NULL separator
++	n++
++
++	// now argv+n is auxv
++	auxv := (*[1 << 28]uintptr)(add(unsafe.Pointer(argv), uintptr(n)*sys.PtrSize))
++	sysauxv(auxv[:])
++}
++
++const (
++	_AT_NULL   = 0 // Terminates the vector
++	_AT_PAGESZ = 6 // Page size in bytes
++)
++
++func sysauxv(auxv []uintptr) {
++	for i := 0; auxv[i] != _AT_NULL; i += 2 {
++		tag, val := auxv[i], auxv[i+1]
++		switch tag {
++		case _AT_PAGESZ:
++			physPageSize = val
++		}
++	}
++}
++
++//go:noescape
++//extern sysctl
++func sysctl(*uint32, uint32, *byte, *uintptr, *byte, uintptr) int32
++
++const (
++	_CTL_HW      = 6
++	_HW_NCPU     = 3
++	_HW_PAGESIZE = 7
++)
++
++func getncpu() int32 {
++	mib := [2]uint32{_CTL_HW, _HW_NCPU}
++	out := uint32(0)
++	nout := unsafe.Sizeof(out)
++	ret := sysctl(&mib[0], 2, (*byte)(unsafe.Pointer(&out)), &nout, nil, 0)
++	if ret >= 0 {
++		return int32(out)
++	}
++	return 1
++}
++
++func getPageSize() uintptr {
++	mib := [2]uint32{_CTL_HW, _HW_PAGESIZE}
++	out := uint32(0)
++	nout := unsafe.Sizeof(out)
++	ret := sysctl(&mib[0], 2, (*byte)(unsafe.Pointer(&out)), &nout, nil, 0)
++	if ret >= 0 {
++		return uintptr(out)
++	}
++	return 0
 +}
 diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/syscall/libcall_inno.go gcc/libgo/go/syscall/libcall_inno.go
 --- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/syscall/libcall_inno.go	1970-01-01 03:00:00.000000000 +0300
 +++ gcc/libgo/go/syscall/libcall_inno.go	2021-04-12 19:33:14.922091264 +0300
-@@ -0,0 +1,22 @@
+@@ -0,0 +1,33 @@
 +// Copyright 2015 The Go Authors. All rights reserved.
 +// Use of this source code is governed by a BSD-style
 +// license that can be found in the LICENSE file.
@@ -535,6 +608,17 @@ diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/g
 +	println("Getdents not implemented")
 +	return 0, errors.New("not implemented")
 +}
++
++//sys	sendfile(outfd int, infd int, offset *Offset_t, count int) (written int, err error)
++//sendfile(outfd _C_int, infd _C_int, offset *Offset_t, count Size_t) Ssize_t
++
++// Dummy function
++func raw_ptrace(request int, pid int, addr *byte, data *byte) Errno {
++	return ENOSYS
++}
++
++// For exec_unix.go.
++const SYS_EXECVE = 0
 diff -NaurwB contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/syscall/route_inno.go gcc/libgo/go/syscall/route_inno.go
 --- contrib/gcc-3cade18cf9defeefa714aa91de3b157fbad4aa18/src/noux-pkg/gcc/libgo/go/syscall/route_inno.go	1970-01-01 03:00:00.000000000 +0300
 +++ gcc/libgo/go/syscall/route_inno.go	2021-04-12 18:41:51.502204081 +0300
