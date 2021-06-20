@@ -15,4 +15,6 @@ ${LIB_CACHE_DIR}/libc-stdlib/libc-stdlib.lib.a \
 ${LIB_CACHE_DIR}/libc-gen/libc-gen.lib.a  \
 ${BUILD_BASE_DIR}/lib/libgo/libgobegin.a \
 ${BUILD_BASE_DIR}/lib/libgo/libgolibbegin.a \
-${BUILD_BASE_DIR}/lib/libgo/.libs/libgo.a
+${BUILD_BASE_DIR}/lib/libgo/.libs/libgo.a \
+$(shell $(CC) $(CC_MARCH) -print-libgcc-file-name) \
+$(shell $(CC) $(CC_MARCH) -print-file-name=libgcc_eh.a)

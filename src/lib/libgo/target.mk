@@ -1,7 +1,7 @@
 PKG_DIR = $(call select_from_ports,libgo)/src/lib/gcc/libgo
 LD_OPT_NOSTDLIB := -nostdlib -Wl,-nostdlib
 MAKE_TARGET := all
-LIBS += libatomic libbacktrace libffi
+LIBS += libatomic libbacktrace libffi libgo_support
 
 CC_OLEVEL = -O0
 
