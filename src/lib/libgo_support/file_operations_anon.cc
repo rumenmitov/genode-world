@@ -42,15 +42,11 @@ void Libc::anon_init_file_operations(Genode::Env &env,
 	/* by default 15 Mb for anon mmap allocator without predefined address */
 	enum { DEFAULT_SIZE = 15ul * 1024 * 1024 };
 	size_t default_size = DEFAULT_SIZE;
-
-	config_accessor.with_sub_node("libc", [&] (Xml_node libc) {
-
-		libc.with_sub_node("mmap", [&] (Xml_node mmap) {
+	config_accessor.with_sub_node("mmap", [&] (Xml_node mmap) {
 			_mmap_align_log2 = mmap.attribute_value("align_log2",
 			                                        _mmap_align_log2);
 			default_size = mmap.attribute_value("local_area_default_size",
 			                                    default_size);
-		});
 	});
 
 	anon_mmap_construct(env, default_size);
@@ -80,29 +76,39 @@ extern "C" void *anon_mmap(void *addr, ::size_t length, int prot, int flags,
 		return mmap(addr, length, prot, flags, libc_fd, offset);
 
 	/* handle requests only for anonymous memory */
-	bool const executable = prot & PROT_EXEC;
+	void *start = addr;
 
 	/* FIXME do not allow overlap with other areas as in original mmap() - just fail */
-	/* desired address given as addr (mandatory if flags has MAP_FIXED) */
-	void *start = Genode::pd_reserve_memory(length, addr, _mmap_align_log2);
-	if (!start || ((flags & MAP_FIXED) && (start != addr))) {
-		errno = ENOMEM;
-		return MAP_FAILED;
+
+	if (prot == PROT_NONE || !addr)
+	{
+		/* process request for memory range reservation (no access, no commit) */
+		/* desired address given as addr (mandatory if flags has MAP_FIXED) */
+		start = Genode::pd_reserve_memory(length, addr, _mmap_align_log2);
+		if (!start || ((flags & MAP_FIXED) && (start != addr)))
+		{
+			errno = ENOMEM;
+			return MAP_FAILED;
+		}
+
+		_anon_mmap_registry.insert(start, length);
+
+		/* if this is just reservation, return (no commit) */
+		if (prot == PROT_NONE)
+			return start;
 	}
 
-	_anon_mmap_registry.insert(start, length);
+	bool const executable = prot & PROT_EXEC;
 
-	if (prot == PROT_NONE) {
-		/* process request for memory range reservation (no access, no commit) */
+	/* desired address returned; commit virtual range */
+	if ( Genode::pd_commit_memory(start, length, executable, addr != 0) )
+	{
+		/* zero commited ram */
+		::memset(start, 0, align_addr(length, PAGE_SHIFT));
 		return start;
 	}
 
-	/* desired address returned; commit virtual range */
-	Genode::pd_commit_memory(start, length, executable, addr != 0);
-
-	/* zero commited ram */
-	::memset(start, 0, align_addr(length, PAGE_SHIFT));
-	return start;
+	return NULL;
 }
 
 

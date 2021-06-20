@@ -197,8 +197,8 @@ class Genode::Vm_area
 		{
 			Ram_dataspace_capability ds;
 
-			Vm_area_ds(addr_t base, size_t size, Ram_dataspace_capability ds)
-			: Vm_range(base, size), ds(ds) {}
+			Vm_area_ds(addr_t base, size_t size, Ram_dataspace_capability _ds)
+			: Vm_range(base, size), ds(_ds) {}
 
 			virtual ~Vm_area_ds()
 			{
