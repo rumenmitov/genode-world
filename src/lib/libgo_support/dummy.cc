@@ -106,10 +106,6 @@ ssize_t __go_genode_write(int fd, const void *Buf, size_t count)
 
 #include <base/thread.h>
 
-/* base-internal includes */
-// #include <base/internal/stack_allocator.h>
-// #include <base/internal/globals.h>
-#if 1
 using namespace Genode;
 
 /******************
@@ -141,16 +137,13 @@ static void construct_component(Libc::Env &env)
 
 namespace Libc {
 
-	void anon_mmap_construct(Genode::Env &env, size_t default_size);
 	void anon_init_file_operations(Genode::Env &env,
 								   Xml_node const &config_accessor);
 }
 
 void Libc::Component::construct(Libc::Env &env)
 {
-	// Libc::anon_mmap_construct(env, 15ul * 1024 * 1024);
 	Libc::anon_init_file_operations(env, env.libc_config());
 
 	Libc::with_libc([&]() { construct_component(env); });
 }
-#endif
