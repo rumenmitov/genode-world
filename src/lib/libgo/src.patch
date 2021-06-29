@@ -207,3 +207,22 @@ diff -NaurwB gcc.libgobase/libgo/runtime/runtime.h gcc.libgomod/libgo/runtime/ru
  #endif
  
  // Symbols defined by the linker.
+diff -NaurwB gcc.libgomod/libgo/runtime/yield.c libgo-821408fdd048faf3bf2627d0fe81a46d80ff3e5f/src/lib/gcc/libgo/runtime/yield.c
+--- gcc.libgomod/libgo/runtime/yield.c	2021-04-08 14:56:30.101765214 +0300
++++ libgo-821408fdd048faf3bf2627d0fe81a46d80ff3e5f/src/lib/gcc/libgo/runtime/yield.c	2021-06-29 23:43:59.570834135 +0300
+@@ -47,13 +47,10 @@
+ }
+ 
+ /* Sleep for some number of microseconds.  */
++extern void my_usleep(uint32 us);
+ 
+ void
+ runtime_usleep (uint32 us)
+ {
+-  struct timeval tv;
+-
+-  tv.tv_sec = us / 1000000;
+-  tv.tv_usec = us % 1000000;
+-  select (0, NULL, NULL, NULL, &tv);
++  my_usleep(us);
+ }

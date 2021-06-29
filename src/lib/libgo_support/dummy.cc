@@ -108,6 +108,17 @@ ssize_t __go_genode_write(int fd, const void *Buf, size_t count)
 
 using namespace Genode;
 
+/* Sleep for some number of microseconds.  */
+#include <internal/kernel.h>
+#include <timer_session/connection.h>
+
+static Timer::Connection *connection_ptr = 0;
+
+extern "C" void
+my_usleep(uint32_t us)
+{
+	connection_ptr->usleep(us);
+}
 /******************
  ** Startup code **
  ******************/
@@ -143,6 +154,9 @@ namespace Libc {
 
 void Libc::Component::construct(Libc::Env &env)
 {
+	static ::Timer::Connection connection(env);
+	connection_ptr = &connection;
+
 	Libc::anon_init_file_operations(env, env.libc_config());
 
 	Libc::with_libc([&]() { construct_component(env); });
