@@ -109,7 +109,6 @@ ssize_t __go_genode_write(int fd, const void *Buf, size_t count)
 using namespace Genode;
 
 /* Sleep for some number of microseconds.  */
-#include <internal/kernel.h>
 #include <timer_session/connection.h>
 
 static Timer::Connection *connection_ptr = 0;
