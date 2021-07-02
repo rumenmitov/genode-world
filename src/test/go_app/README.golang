@@ -5,7 +5,7 @@ This work is a side result of one of the research project made in Innopolis Univ
 	(c) Alex Tormasov, tor@innopolis.ru - port itsels, Alexey Semenov aleks.semenov@innopolis.ru - build
 
 It allow compilation and execution of simple go applications/packages (without unsupported OS/platform features).
-In this moment it supports nova and sel4 kernels on x86 platform.
+In this moment it supports linux, nova and sel4 kernels on x86 platform.
 
 I use only gccgo version of golang compiler. Things like "go build" in cross mode not supported yet (while we make
 some techology to produce makefiles from "go build" to compilei go code, not attached yet).
@@ -13,7 +13,7 @@ Other limitations see below.
 
 It build a set of libraries, from world repo, as static ones.
 Also it build a set of standard golang packages (namely fmt, os, syscall, runtime/etc) as files for gccgo compilation.
-Note: Go runtinme support around 9 systems as backend. I use netbsd as simplest one as the base for new system - "inno".
+Note: Go runtinme support around 9 systems as backend. I use netbsd as simplest one as the prototype for new system - "inno".
 
 To implement context switching I have to port it from the glibc (but use makecontext from genode FreeBSD port, so, to use
 you need to fill mc_len field before call to makecontext()); for stack it use alloc_secondary_stack() from Genode.
@@ -61,7 +61,7 @@ target.mk for test app:
 TARGET = test-go
 SRC_GO = main.go
 
-LIBS   = base stdcxx libc libm libgo libgo_support
+LIBS   = base libc libm libatomic libbacktrace libffi libgo libgo_support stdcxx
 
 CC_CXX_WARN_STRICT =
 	
@@ -123,9 +123,9 @@ Addresses like -o 0x10dfe000 you could take from log of program after first star
 	===================
   -	can run in VM with 1 CPU only:
 	2+ cpu give some pagefault in runtime.kickoff, seems that g does not have valid entry field (0)
-   -	it works only on x86_64, tested on nova (not yet on sel4) kernels
+   -	it works only on x86_64, tested on nova and linux (not yet on sel4) kernels
 	genode do not support makecontex/setcontext/gencontext family; but it is crucial to support because of goroutine model;
-	I have to implement it by myself. It is machine-dependent; 
+	I have to port it from FreeBSD libc. It is machine and platform-dependent; 
   -	during port I make a set of dirty fixes for absent on the platform (genode/nova), in particular "empty" C implementaion of
 	sendfile(), getpgid(), lchown(), mount(), settimeofday(), mlock(), munlock(), mlockall(), munlockall(), sigaltstack();
 	in go part of runtime port I also "damage" some functions, in particualr route.sysctl(), broke poll.ReadDirent(), do not
