@@ -26,7 +26,7 @@ install_config {
                         <provides><service name="Timer"/></provides>
                 </start>
 		<start name="test-go" caps="250">
-			<resource name="RAM" quantum="20M"/>
+			<resource name="RAM" quantum="2024M"/>
 			<config verbose="yes" ld_verbose="yes" >
 				<vfs>
 					<dir name="dev"> <log/> </dir>
@@ -42,7 +42,9 @@ install_config {
 						</dir>
 					</dir>
 				</vfs>
-                <libc stdout="/dev/log" stderr="/dev/log"/>
+                <libc stdout="/dev/log" stderr="/dev/log">
+					<mmap local_area_default_size="1610612736" />
+				</libc>
 			</config>
 		</start>
 	</config>
@@ -53,7 +55,7 @@ build_boot_image {
 	vfs.lib.so test-go
 }
 
-append qemu_args " -m 80M -nographic -smp 1"
+append qemu_args " -m 1480M -nographic -smp 1"
 
 run_genode_until forever
 run_genode_until "--- parent done ---.*\n" 20
