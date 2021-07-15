@@ -102,7 +102,7 @@ diff -NaurwB gcc.libgobase/libgo/runtime/proc.c gcc.libgomod/libgo/runtime/proc.
  #ifdef USING_SPLIT_STACK
  
  /* FIXME: These are not declared anywhere.  */
-@@ -51,7 +51,7 @@
+@@ -50,7 +52,7 @@
  #if defined(USING_SPLIT_STACK) && defined(LINKER_SUPPORTS_SPLIT_STACK)
  # define StackMin PTHREAD_STACK_MIN
  #else
@@ -121,7 +121,29 @@ diff -NaurwB gcc.libgobase/libgo/runtime/proc.c gcc.libgomod/libgo/runtime/proc.
  
  #ifndef SETCONTEXT_CLOBBERS_TLS
  
-@@ -753,7 +754,8 @@
+@@ -774,6 +778,21 @@
+ 	reentersyscallblock(pc, sp);
+ }
+ 
++// Allocate a new M to be used as stack later in pthread_create
++// for genode thread stack should be allocated from pre-defined place for myself() works correctly
++// other places where we use for stack code like
++// {
++// 	void *v;
++// 	g->gcnextsp = (uintptr)(&v);
++// }
++// should work because it will be performed in thread context where stack already was correctly
++// setup for pre-defined set of addresses allowed for thread stacks and myself() check will works
++M *runtime_newmalloc(void) __asm__(GOSYM_PREFIX "runtime.newmalloc");
++
++M *runtime_newmalloc(void)
++{
++	return (M *)alloc_secondary_stack("goappM", sizeof(M));
++}
+ // Allocate a new g, with a stack big enough for stacksize bytes.
+ G*
+ runtime_malg(bool allocatestack, bool signalstack, byte** ret_stack, uintptr* ret_stacksize)
+@@ -819,7 +838,8 @@
                  // 32-bit mode, the Go allocation space is all of
                  // memory anyhow.
  		if(sizeof(void*) == 8) {
@@ -131,7 +153,7 @@ diff -NaurwB gcc.libgobase/libgo/runtime/proc.c gcc.libgomod/libgo/runtime/proc.
  			if(p == nil)
  				runtime_throw("runtime: cannot allocate memory for goroutine stack");
  			*ret_stack = (byte*)p;
-@@ -770,6 +772,7 @@
+@@ -836,6 +856,7 @@
  	return newg;
  }
  
@@ -139,7 +161,7 @@ diff -NaurwB gcc.libgobase/libgo/runtime/proc.c gcc.libgomod/libgo/runtime/proc.
  void stackfree(G*)
    __asm__(GOSYM_PREFIX "runtime.stackfree");
  
-@@ -786,7 +789,8 @@
+@@ -852,7 +873,8 @@
    // using garbage collected memory.
    if (gp->gcstacksize != 0) {
      if (sizeof(void*) == 8) {
@@ -226,3 +248,28 @@ diff -NaurwB gcc.libgomod/libgo/runtime/yield.c libgo-821408fdd048faf3bf2627d0fe
 -  select (0, NULL, NULL, NULL, &tv);
 +  my_usleep(us);
  }
+diff -NaurwB gcc.libgomod/libgo/go/runtime/proc.go libgo-821408fdd048faf3bf2627d0fe81a46d80ff3e5f/src/lib/gcc/libgo/go/runtime/proc.go
+--- gcc.libgomod/libgo/go/runtime/proc.go	2021-04-08 14:56:30.073764876 +0300
++++ libgo-821408fdd048faf3bf2627d0fe81a46d80ff3e5f/src/lib/gcc/libgo/go/runtime/proc.go	2021-07-14 00:48:49.209616164 +0300
+@@ -47,6 +47,9 @@
+ // C functions for thread and context management.
+ func newosproc(*m)
+ 
++// C function to allocate space from area dedicated for thread stacks in genode
++func newmalloc() *m
++
+ //go:noescape
+ func malg(bool, bool, *unsafe.Pointer, *uintptr) *g
+ 
+@@ -1351,7 +1373,11 @@
+ 		unlock(&sched.lock)
+ 	}
+ 
++	if GOOS == "inno" {
++		mp = newmalloc()
++	} else {
+ 	mp = new(m)
++	}
+ 	mp.mstartfn = fn
+ 	mcommoninit(mp)
+ 
