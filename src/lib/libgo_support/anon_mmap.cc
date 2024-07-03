@@ -104,7 +104,8 @@ class Genode::Vm_region_map
 
 		~Vm_region_map()
 		{
-			/* ??? FIXME - need to cleanup _range */
+            _range.free(_base);
+            _range.remove_range(_base, _size);
 			_env.rm().detach(_base);
 		}
 
