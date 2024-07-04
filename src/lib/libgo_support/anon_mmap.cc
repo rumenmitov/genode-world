@@ -413,6 +413,8 @@ class Genode::Vm_area_registry
 				                   bool need_new_chunk = false;
 				                   addr_t newaddr, oldaddr;
 				                   size_t newsize, oldsize;
+                                   size_t mem_waste_size = 0;
+                                   addr_t mem_waste_addr;
 
 				                   /* search for overlapping region in current Vm_area */
 				                   vm.mapped.for_each([&](Vm_area::vm_ranges_handle &vr) {
@@ -449,6 +451,29 @@ class Genode::Vm_area_registry
 								                                      vr.base = newaddr + newsize;
 								                                      vr.size = oldaddr + oldsize - newaddr - newsize;
 								                                      used_vr = true;
+
+                                                                      /* this branch is only be reached if 
+                                                                       * oldaddr == newaddr, hence we have
+                                                                       * the following situation:
+                                                                       *
+                                                                       *       *         |       -> oldaddr + oldsize
+                                                                       *       *         |       
+                                                                       *       *         |       
+                                                                       *       |@@@@@@@@@|       -> vr.base
+                                                                       *       |@@@@@@@@@|
+                                                                       * ______|_________|______ -> oldaddr == newaddr
+                                                                       *
+                                                                       * where (*) is the vr.size and
+                                                                       * (@) is the wasted block of memory.
+                                                                       */
+                                                                      if (newsize > mem_waste_size) {
+                                                                          /* TODO keep track of all 
+                                                                           * all wasted memory (not just the biggest)
+                                                                           */
+                                                                          mem_waste_size = newsize;
+                                                                          mem_waste_addr = newaddr;
+                                                                      }
+
 							                                      }
 						                                      }
 
@@ -464,8 +489,13 @@ class Genode::Vm_area_registry
 				                                      });
 
 				                   if (need_new_chunk) {
-					                   new (_kheap) Vm_area::vm_ranges_handle(vm.mapped, newaddr + newsize,
+                                       if (mem_waste_size > 0) {
+                                           new (_kheap) Vm_area::vm_ranges_handle(vm.mapped, mem_waste_addr,
+                                                                             newaddr + newsize);
+                                       } else 
+                                           new (_kheap) Vm_area::vm_ranges_handle(vm.mapped, newaddr + newsize,
 					                                                          oldaddr + oldsize - newaddr - newsize);
+
 				                   }
 
 				                   area_used = used;
